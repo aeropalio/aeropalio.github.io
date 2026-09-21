@@ -1,0 +1,131 @@
+---
+// src/components/Header.astro
+const links = [
+  { href: '/', label: 'Início' },
+  { href: '/musica', label: 'Música' },
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/contato', label: 'Contato' },
+];
+
+const pathname = Astro.url.pathname;
+---
+
+<header class="header">
+  <div class="container">
+    <a href="/" class="logo">AEROPALIO</a>
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="nav">
+      <ul>
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={['nav-link', { active: pathname === link.href }]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid rgba(245, 197, 24, 0.15);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .logo:hover { color: var(--accent); }
+
+  .nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover { color: var(--accent); }
+
+  .nav-link.active {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.25rem;
+  }
+
+  /* Menu mobile — checkbox hack, zero JavaScript */
+  .menu-toggle { display: none; }
+
+  .menu-icon {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .menu-icon span {
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+  }
+
+  @media (max-width: 640px) {
+    .menu-icon { display: flex; }
+
+    .nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg-alt);
+      border-bottom: 1px solid rgba(245, 197, 24, 0.15);
+    }
+
+    .nav ul {
+      flex-direction: column;
+      gap: 0;
+      padding: 1rem 1.5rem;
+    }
+
+    .nav li { padding: 0.6rem 0; }
+
+    .menu-toggle:checked ~ .nav { display: block; }
+  }
+</style>

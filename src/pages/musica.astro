@@ -1,0 +1,158 @@
+---
+// src/pages/musica.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+
+// Troque pelos IDs reais dos vídeos (a parte após "v=" na URL do YouTube)
+const liveVideoId = '5AJz7i9XfV4?si=-ndMwTF1-gOmlCUF';   // vídeo ao vivo atual (2 músicas)
+const fullShowVideoId = '';           // vídeo do show completo (quando lançar)
+---
+
+<BaseLayout
+  title="Música"
+  description="AEROPALIO — Música. O primeiro single DILÚVIO está em produção, vídeos ao vivo e lançamentos."
+>
+  <!-- Single em produção -->
+  <section class="single">
+    <p class="single-label">Primeiro single</p>
+    <h1 class="single-title">DILÚVIO</h1>
+    <p class="single-status">Em produção</p>
+    <p class="single-text">
+      O primeiro single da AEROPALIO está sendo gravado.
+      Demonstre seu interesse e seja avisado assim que sair.
+    </p>
+    <form class="interest" action="#" method="post">
+      <input type="email" name="email" placeholder="seuemail@exemplo.com" required />
+      <button type="submit" class="btn">Quero apoiar o lançamento</button>
+    </form>
+    <p class="single-note">Sem spam. Avisamos só quando o single sair.</p>
+  </section>
+
+  <!-- Ao vivo -->
+  <section class="section">
+    <h2 class="section-title">Ao Vivo</h2>
+    <p class="section-sub">Duas músicas gravadas ao vivo</p>
+    <VideoEmbed videoId={liveVideoId} />
+  </section>
+
+  <!-- Show completo (futuro) -->
+  <section class="section section-alt">
+    <h2 class="section-title">Show Completo</h2>
+    <p class="section-sub">Em breve — a apresentação inteira, gravada ao vivo.</p>
+  </section>
+
+  <!-- Álbum (futuro) -->
+  <section class="section">
+    <h2 class="section-title">Álbum de Estreia</h2>
+    <p class="section-sub">Em produção — o primeiro álbum da AEROPALIO.</p>
+  </section>
+</BaseLayout>
+
+<style>
+  .single {
+    text-align: center;
+    padding: 5rem 1.5rem 4rem;
+    background: var(--bg-alt);
+    border-bottom: 1px solid rgba(245, 197, 24, 0.15);
+  }
+
+  .single-label {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0 0 0.5rem;
+  }
+
+  .single-title {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 8vw, 5rem);
+    letter-spacing: 0.08em;
+    color: var(--text);
+    margin: 0 0 0.5rem;
+  }
+
+  .single-status {
+    display: inline-block;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.9rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .single-text {
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 2rem;
+  }
+
+  .interest {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .interest input {
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(245, 197, 24, 0.3);
+    background: var(--bg);
+    color: var(--text);
+    border-radius: 2px;
+    min-width: 280px;
+    font-size: 0.95rem;
+  }
+
+  .interest input::placeholder { color: var(--text-muted); }
+
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #0a0e1a;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover { opacity: 0.85; }
+
+  .single-note {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin: 1rem 0 0;
+  }
+
+  .section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+
+  .section-alt {
+    background: var(--bg-alt);
+    max-width: none;
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--text);
+    margin: 0 0 0.5rem;
+  }
+
+  .section-sub {
+    color: var(--text-muted);
+    margin: 0 0 2rem;
+  }
+</style>

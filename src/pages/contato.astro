@@ -1,0 +1,150 @@
+---
+// src/pages/contato.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Use os mesmos links reais que você colocou no Footer
+const socials = [
+  { href: 'https://youtube.com/@AEROPALIO', label: 'YouTube' },
+  { href: 'https://instagram.com/aeropaliopalio', label: 'Instagram' },
+  { href: 'mailto:contato@aeropalio.com', label: 'E-mail' },
+];
+---
+
+<BaseLayout
+  title="Contato"
+  description="AEROPALIO — Contato, booking e redes sociais."
+>
+  <!-- Booking -->
+  <section class="hero">
+    <h1 class="hero-title">Fale com a AEROPALIO</h1>
+    <p class="hero-text">
+      Quer contratar a banda para um show ou divulgar um lançamento?
+      Escreva para a gente.
+    </p>
+    <a href="mailto:contato@aeropalio.com" class="btn">Enviar e-mail</a>
+  </section>
+
+  <!-- Redes -->
+  <section class="section">
+    <h2 class="section-title">Redes Sociais</h2>
+    <ul class="socials">
+      {socials.map((s) => (
+        <li>
+          <a href={s.href} target="_blank" rel="noopener">{s.label}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Formulário -->
+  <section class="section section-alt">
+    <h2 class="section-title">Mensagem</h2>
+    <form class="contact" action="#" method="post">
+      <input type="text" name="nome" placeholder="Seu nome" required />
+      <input type="email" name="email" placeholder="seuemail@exemplo.com" required />
+      <textarea name="mensagem" placeholder="Sua mensagem" rows="5" required></textarea>
+      <button type="submit" class="btn">Enviar mensagem</button>
+    </form>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 5rem 1.5rem 4rem;
+    background: var(--bg-alt);
+    border-bottom: 1px solid rgba(245, 197, 24, 0.15);
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: var(--text);
+    margin: 0 0 1.5rem;
+  }
+
+  .hero-text {
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #0a0e1a;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover { opacity: 0.85; }
+
+  .section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+
+  .section-alt {
+    background: var(--bg-alt);
+    max-width: none;
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--text);
+    margin: 0 0 2rem;
+  }
+
+  .socials {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .socials a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 1rem;
+  }
+
+  .socials a:hover { color: var(--accent); }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .contact input,
+  .contact textarea {
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(245, 197, 24, 0.3);
+    background: var(--bg);
+    color: var(--text);
+    border-radius: 2px;
+    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    resize: vertical;
+  }
+
+  .contact input::placeholder,
+  .contact textarea::placeholder { color: var(--text-muted); }
+</style>

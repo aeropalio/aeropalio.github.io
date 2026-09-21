@@ -1,0 +1,138 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+
+// Troque pelo ID real do vídeo ao vivo (a parte após "v=" na URL do YouTube)
+const videoId = '5AJz7i9XfV4?si=-ndMwTF1-gOmlCUF';
+---
+
+<BaseLayout title="Início" description="AEROPALIO — Rock alternativo autoral. Vídeos ao vivo, lançamentos e agenda.">
+  <!-- Hero -->
+  <section class="hero">
+    <h1 class="hero-title">AEROPALIO</h1>
+    <p class="hero-tagline">roque alternativo tudo autoral</p>
+    <p class="hero-text">
+      Primeiro single em produção. Fique por dentro de tudo que está por vir.
+    </p>
+    <a href="#newsletter" class="btn">Quero receber novidades</a>
+  </section>
+
+  <!-- Vídeo ao vivo -->
+  <section class="section" id="musica">
+    <h2 class="section-title">Ao Vivo</h2>
+    <p class="section-sub">medley gravadas ao vivo</p>
+    <VideoEmbed videoId={videoId} />
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section section-alt" id="newsletter">
+    <h2 class="section-title">Fique por dentro do primeiro single</h2>
+    <p class="section-sub">Lançamentos, vídeos e shows — direto no seu e-mail.</p>
+    <form class="newsletter" action="#" method="post">
+      <input type="email" name="email" placeholder="seuemail@exemplo.com" required />
+      <button type="submit" class="btn">Quero receber novidades</button>
+    </form>
+  </section>
+
+  <!-- Próximos shows -->
+  <section class="section" id="shows">
+    <h2 class="section-title">Próximos Shows</h2>
+    <p class="section-sub">Em breve — agenda sendo montada.</p>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 5rem 1.5rem;
+    background: var(--bg-alt);
+    border-bottom: 1px solid rgba(245, 197, 24, 0.15);
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    letter-spacing: 0.1em;
+    color: var(--text);
+    margin: 0 0 0.5rem;
+  }
+
+  .hero-tagline {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    font-size: 0.9rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .hero-text {
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    font-size: 1.05rem;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #0a0e1a;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover { opacity: 0.85; }
+
+  .section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+
+  .section-alt {
+    background: var(--bg-alt);
+    max-width: none;
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--text);
+    margin: 0 0 0.5rem;
+  }
+
+  .section-sub {
+    color: var(--text-muted);
+    margin: 0 0 2rem;
+  }
+
+  .newsletter {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .newsletter input {
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(245, 197, 24, 0.3);
+    background: var(--bg);
+    color: var(--text);
+    border-radius: 2px;
+    min-width: 280px;
+    font-size: 0.95rem;
+  }
+
+  .newsletter input::placeholder { color: var(--text-muted); }
+</style>

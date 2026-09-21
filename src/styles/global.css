@@ -1,0 +1,22 @@
+:root {
+  /* Paleta Seguindo Design de Ampulheta */
+  --bg: #0a0e1a;
+  --bg-alt: #121a2e;
+  --accent: #f5c518;
+  --text: #e8ecf4;
+  --text-muted: #8b93a7; 
+
+  /* Tipografia */
+  --font-serif: "Playfair Display", Georgia, serif;   /* títulos */
+  --font-sans: "Inter", system-ui, sans-serif;        /* corpo */
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}

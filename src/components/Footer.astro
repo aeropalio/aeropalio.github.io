@@ -1,0 +1,73 @@
+---
+// src/components/Footer.astro
+const year = new Date().getFullYear();
+
+const socials = [
+  { href: 'https://www.youtube.com/@AEROPALIO', label: 'YouTube' },
+  { href: 'https://instagram.com/aeropaliopalio', label: 'Instagram' },
+  { href: 'mailto:contato@aeropalio.com', label: 'E-mail' },
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <p class="brand">AEROPALIO</p>
+    <p class="tagline">roque alternativo tudo autoral</p>
+
+    <ul class="socials">
+      {socials.map((s) => (
+        <li>
+          <a href={s.href} target="_blank" rel="noopener">{s.label}</a>
+        </li>
+      ))}
+    </ul>
+
+    <p class="copy">© {year} AEROPALIO. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid rgba(245, 197, 24, 0.15);
+    background: var(--bg);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+  }
+
+  .brand {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--text);
+    margin: 0 0 0.25rem;
+  }
+
+  .tagline {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .socials {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0 0 1.5rem;
+    padding: 0;
+  }
+
+  .socials a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .socials a:hover { color: var(--accent); }
+
+  .copy {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin: 0;
+  }
+</style>
