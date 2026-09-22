@@ -1,100 +1,112 @@
 ---
-// src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
-import VideoEmbed from '../components/VideoEmbed.astro';
-
-// Troque pelo ID real do vídeo ao vivo (a parte após "v=" na URL do YouTube)
-const videoId = '5AJz7i9XfV4?si=-ndMwTF1-gOmlCUF';
 ---
 
-<BaseLayout title="Início" description="AEROPALIO — Rock alternativo autoral. Vídeos ao vivo, lançamentos e agenda.">
-  <!-- Hero -->
+<BaseLayout title="Início">
   <section class="hero">
-    <h1 class="hero-title">AEROPALIO</h1>
-    <p class="hero-tagline">roque alternativo tudo autoral</p>
-    <p class="hero-text">
-      Primeiro single em produção. Fique por dentro de tudo que está por vir.
-    </p>
-    <a href="#newsletter" class="btn">Quero receber novidades</a>
+    <img src="/designampulheta.jpg" alt="Arte da ampulheta quebrada — single AMPULHETA" class="hero-art" />
+    <div class="hero-content">
+      <p class="hero-label">Primeiro single</p>
+      <h1 class="hero-title">AMPULHETA</h1>
+      <p class="hero-sub">Rock alternativo autoral</p>
+      <a href="#newsletter" class="cta">Quero receber novidades</a>
+    </div>
   </section>
 
-  <!-- Vídeo ao vivo -->
   <section class="section" id="musica">
     <h2 class="section-title">Ao Vivo</h2>
-    <p class="section-sub">medley gravadas ao vivo</p>
-    <VideoEmbed videoId={videoId} />
+    <p class="section-sub">Uma prévia do que a gente faz no palco.</p>
   </section>
 
-  <!-- Newsletter -->
   <section class="section section-alt" id="newsletter">
-    <h2 class="section-title">Fique por dentro do primeiro single</h2>
-    <p class="section-sub">Lançamentos, vídeos e shows — direto no seu e-mail.</p>
-    <form class="newsletter" action="#" method="post">
+    <h2 class="section-title">O primeiro single está em produção</h2>
+    <p class="section-sub">Deixe seu e-mail e receba em primeira mão quando sair.</p>
+    <form class="newsletter-form" action="#" method="post">
       <input type="email" name="email" placeholder="seuemail@exemplo.com" required />
-      <button type="submit" class="btn">Quero receber novidades</button>
+      <button type="submit" class="btn">Quero receber</button>
     </form>
-  </section>
-
-  <!-- Próximos shows -->
-  <section class="section" id="shows">
-    <h2 class="section-title">Próximos Shows</h2>
-    <p class="section-sub">Em breve — agenda sendo montada.</p>
   </section>
 </BaseLayout>
 
 <style>
+  /* Textura de papel/gravura sobre o fundo escuro */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
   .hero {
-    text-align: center;
-    padding: 5rem 1.5rem;
-    background: var(--bg-alt);
-    border-bottom: 1px solid rgba(245, 197, 24, 0.15);
+    position: relative;
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+    padding: 4rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .hero-art {
+    width: 100%;
+    max-width: 420px;
+    justify-self: center;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-label {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin: 0 0 0.5rem;
   }
 
   .hero-title {
     font-family: var(--font-serif);
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    letter-spacing: 0.1em;
+    font-size: clamp(3.5rem, 9vw, 6rem);
+    letter-spacing: 0.02em;
+    line-height: 1;
     color: var(--text);
-    margin: 0 0 0.5rem;
+    margin: 0 0 1rem;
   }
 
-  .hero-tagline {
-    font-family: var(--font-sans);
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    color: var(--accent);
-    font-size: 0.9rem;
-    margin: 0 0 1.5rem;
-  }
-
-  .hero-text {
+  .hero-sub {
     color: var(--text-muted);
-    max-width: 480px;
-    margin: 0 auto 2rem;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 0 0 2rem;
   }
 
-  .btn {
+  .cta {
     display: inline-block;
     background: var(--accent);
     color: #0a0e1a;
-    font-family: var(--font-sans);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 0.85rem;
     padding: 0.9rem 2rem;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
     text-decoration: none;
     transition: opacity 0.2s;
   }
 
-  .btn:hover { opacity: 0.85; }
+  .cta:hover { opacity: 0.85; }
 
   .section {
-    max-width: 800px;
+    max-width: 720px;
     margin: 0 auto;
     padding: 4rem 1.5rem;
     text-align: center;
@@ -114,25 +126,52 @@ const videoId = '5AJz7i9XfV4?si=-ndMwTF1-gOmlCUF';
 
   .section-sub {
     color: var(--text-muted);
-    margin: 0 0 2rem;
+    margin: 0 0 1.5rem;
   }
 
-  .newsletter {
+  .newsletter-form {
     display: flex;
-    gap: 0.75rem;
+    gap: 0.5rem;
     justify-content: center;
     flex-wrap: wrap;
   }
 
-  .newsletter input {
-    padding: 0.9rem 1rem;
-    border: 1px solid rgba(245, 197, 24, 0.3);
+  .newsletter-form input {
+    flex: 1;
+    min-width: 220px;
+    padding: 0.8rem 1rem;
     background: var(--bg);
+    border: 1px solid rgba(245, 197, 24, 0.3);
     color: var(--text);
-    border-radius: 2px;
-    min-width: 280px;
-    font-size: 0.95rem;
+    font-family: var(--font-sans);
   }
 
-  .newsletter input::placeholder { color: var(--text-muted); }
+  .btn {
+    background: var(--accent);
+    color: #0a0e1a;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: var(--font-sans);
+    cursor: pointer;
+  }
+
+  .btn:hover { opacity: 0.85; }
+
+  /* Responsivo: empilha arte e texto em telas pequenas */
+  @media (max-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding-top: 3rem;
+    }
+
+    .hero-content { align-items: center; }
+    .hero-art {
+      max-width: 280px;
+      order: -1;
+    }
+  }
 </style>
