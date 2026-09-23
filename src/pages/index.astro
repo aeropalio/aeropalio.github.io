@@ -1,21 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+const paladarfilhoId = '5AJz7i9XfV4?si=-ndMwTF1-gOmlCUF';
 ---
 
-<BaseLayout title="Início">
+<BaseLayout title="Início" description="AEROPALIO | Roque alternativo autoral. Vídeos, lançamentos, agenda e mais.">
   <section class="hero">
     <img src="/designampulheta.jpeg" alt="Arte da ampulheta quebrada — single AMPULHETA" class="hero-art" />
     <div class="hero-content">
       <p class="hero-label">Primeiro single</p>
       <h1 class="hero-title">AMPULHETA</h1>
-      <p class="hero-sub">Rock alternativo autoral</p>
+      <p class="hero-sub">Roque alternativo autoral</p>
       <a href="#newsletter" class="cta">Quero receber novidades</a>
     </div>
   </section>
 
   <section class="section" id="musica">
     <h2 class="section-title">Ao Vivo</h2>
-    <p class="section-sub">Uma prévia do que a gente faz no palco.</p>
+    <p class="section-sub">Colocar alguma coisa legal aqui, talvez sobre o vídeo</p>
+    <VideoEmbed videoId={paladarfilhoId} />
   </section>
 
   <section class="section section-alt" id="newsletter">
