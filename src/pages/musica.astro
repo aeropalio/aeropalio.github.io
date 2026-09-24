@@ -6,26 +6,7 @@ import VideoEmbed from '../components/VideoEmbed.astro';
 // Troque pelos IDs reais dos vídeos (a parte após "v=" na URL do YouTube)
 const paladarfilhoId = '5AJz7i9XfV4?si=-ndMwTF1-gOmlCUF';
 const showPortaMalditaId = '';           // (para quando lançar)
-const form = document.getElementById("form") as HTMLFormElement;
-  const result = document.getElementById("result") as HTMLElement;
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    result.innerHTML = "Sending...";
-
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: new FormData(form),
-    });
-
-    const data = await response.json();
-    if (data.success) {
-      result.innerHTML = "Form Submitted Successfully";
-      form.reset();
-    } else {
-      result.innerHTML = data.message;
-    }
-  });
 ---
 
 <BaseLayout title="Música">
@@ -43,6 +24,28 @@ const form = document.getElementById("form") as HTMLFormElement;
       <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
       <button type="submit">Submit Form</button>
     </form>
+    <script>
+      const form = document.getElementById("form") as HTMLFormElement;
+      const result = document.getElementById("result") as HTMLElement;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        result.innerHTML = "Sending...";
+
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: new FormData(form),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+          result.innerHTML = "Form Submitted Successfully";
+          form.reset();
+        } else {
+          result.innerHTML = data.message;
+        }
+      });
+    </script>
   </section>
 
   <section class="section">
