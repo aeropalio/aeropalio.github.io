@@ -41,11 +41,11 @@ const socials = [
     <h2 class="section-title">Mensagem</h2>
     <form action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="e4bd996a-80fb-4ce0-8847-d5d85b2c47a0">
-      <input type="text" name="name" required>
-      <input type="email" name="email" required>
-      <textarea name="message" required></textarea>
-      <button type="submit">Enviar Mensagem</button>
+      <input type="text" name="nome" placeholder="Seu nome" required />
+      <input type="email" name="email" placeholder="seuemail@exemplo.com" required />
+      <textarea name="mensagem" placeholder="Sua mensagem" rows="5" required></textarea>
       <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
+      <button type="submit">Enviar mensagem</button>
     </form>
     <script>
       const form = document.getElementById("form") as HTMLFormElement;

@@ -20,3 +20,45 @@ body {
   color: var(--text);
   min-height: 100vh;
 }
+
+form input,
+form textarea {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  border-radius: 2px;
+  background: #0a0e1a;
+  color: #e8ecf4;
+  font-size: 0.95rem;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: #8b93a7;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+form button[type="submit"] {
+  background: #f5c518;
+  color: #0a0e1a;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+form button[type="submit"]:hover {
+  opacity: 0.9;
+}
