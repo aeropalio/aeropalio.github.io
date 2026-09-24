@@ -8,6 +8,27 @@ const socials = [
   { href: 'https://instagram.com/aeropaliopalio', label: 'Instagram' },
   { href: 'mailto:contato@aeropalio.com.br', label: 'E-mail' },
 ];
+
+const form = document.getElementById("form") as HTMLFormElement;
+const result = document.getElementById("result") as HTMLElement;
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  result.innerHTML = "Sending...";
+
+const response = await fetch("https://api.web3forms.com/submit", {
+  method: "POST",
+  body: new FormData(form),
+});
+
+const data = await response.json();
+if (data.success) {
+  result.innerHTML = "Form Submitted Successfully";
+  form.reset();
+} else {
+  result.innerHTML = data.message;
+}
+});
 ---
 
 <BaseLayout
@@ -39,11 +60,13 @@ const socials = [
   <!-- Formulário -->
   <section class="section section-alt">
     <h2 class="section-title">Mensagem</h2>
-    <form class="contact" action="#" method="post">
-      <input type="text" name="nome" placeholder="Seu nome" required />
-      <input type="email" name="email" placeholder="seuemail@exemplo.com" required />
-      <textarea name="mensagem" placeholder="Sua mensagem" rows="5" required></textarea>
-      <button type="submit" class="btn">Enviar mensagem</button>
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="e4bd996a-80fb-4ce0-8847-d5d85b2c47a0">
+      <input type="text" name="name" required>
+      <input type="email" name="email" required>
+      <textarea name="message" required></textarea>
+      <button type="submit">Enviar Mensagem</button>
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
     </form>
   </section>
 </BaseLayout>

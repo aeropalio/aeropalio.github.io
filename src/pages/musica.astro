@@ -6,6 +6,26 @@ import VideoEmbed from '../components/VideoEmbed.astro';
 // Troque pelos IDs reais dos vídeos (a parte após "v=" na URL do YouTube)
 const paladarfilhoId = '5AJz7i9XfV4?si=-ndMwTF1-gOmlCUF';
 const showPortaMalditaId = '';           // (para quando lançar)
+const form = document.getElementById("form") as HTMLFormElement;
+  const result = document.getElementById("result") as HTMLElement;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    result.innerHTML = "Sending...";
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: new FormData(form),
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      result.innerHTML = "Form Submitted Successfully";
+      form.reset();
+    } else {
+      result.innerHTML = data.message;
+    }
+  });
 ---
 
 <BaseLayout title="Música">
@@ -17,9 +37,11 @@ const showPortaMalditaId = '';           // (para quando lançar)
       O primeiro single da AEROPALIO está sendo gravado.
       Demonstre seu interesse e seja avisado assim que sair.
     </p>
-    <form class="interest" action="#" method="post">
-      <input type="email" name="email" placeholder="seuemail@exemplo.com" required />
-      <button type="submit" class="btn">Quero apoiar</button>
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="e4bd996a-80fb-4ce0-8847-d5d85b2c47a0">
+      <input type="email" name="email" required>
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
+      <button type="submit">Submit Form</button>
     </form>
   </section>
 
